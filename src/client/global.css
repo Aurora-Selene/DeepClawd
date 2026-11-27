@@ -1,0 +1,110 @@
+html body {
+  --dsw-specific-sidebar-wash-top: transparent;
+  --dsw-specific-sidebar-wash-bottom: transparent;
+  --dsh-font-family: var(--dsh-ui-font);
+  --dsh-font-family-text: var(--dsh-ui-font);
+  font-family: var(--dsh-ui-font);
+  transition: background-color var(--dsh-ui-motion), color var(--dsh-ui-motion);
+}
+
+:has(> [data-rightbar-col]):is([data-sidebar-collapsed], [data-sidebar-drawer], [data-animating]) {
+  --ds-transition-duration-slow: 320ms;
+  --ds-ease-in-out: cubic-bezier(.22, .75, .24, 1);
+}
+
+:is([class*="_sidebarCol"], [data-rightbar-col], [data-message-bubble], [data-conversation-content] > [data-conversation-scroll]) {
+  transition: background-color var(--dsh-ui-motion), color var(--dsh-ui-motion), border-color var(--dsh-ui-motion);
+}
+
+header[data-window-drag]:has(> [data-conversation-header-leading])
+:is([class*="_crumbCurrent"], [data-subagent-action] button[class*="_switcherTrigger"]:not([class*="_ancestorSwitcherTrigger"])) {
+  max-width: 360px;
+}
+
+/* The native tab estimate reserves 48px plus 120px per tab. Let it keep the
+   two built-in tabs while confining any extra measured width to trailing padding. */
+header[data-window-drag] div:has(> [data-conversation-tabs]) {
+  --dsh-ui-tab-row-min: 288px;
+  width: max(100%, var(--dsh-ui-tab-row-min));
+  padding-inline-end: max(0px, calc(var(--dsh-ui-tab-row-min) - 100%));
+}
+
+header:has([data-dsh-ui-compact-view-tabs]) [data-conversation-tabs]:has(> [role="tab"]:nth-child(2))
+  + [class*="_viewsMoreAnchor"] {
+  display: none;
+}
+
+[data-composer-card] {
+  background: var(--dsh-ui-surface);
+  border: 1px solid var(--dsh-ui-input);
+  border-radius: 16px;
+  box-shadow: 0 2px 4px color-mix(in srgb, var(--dsh-ui-text) 7%, transparent);
+  transition: background-color var(--dsh-ui-motion), border-color var(--dsh-ui-motion), box-shadow var(--dsh-ui-motion);
+}
+
+[data-composer-card]:focus-within {
+  border-color: var(--dsh-ui-focus);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--dsh-ui-focus) 14%, transparent);
+}
+
+[data-composer-card] [contenteditable="true"],
+[data-composer-card] textarea {
+  font-family: var(--dsh-ui-font-input);
+  color: var(--dsh-ui-text);
+  caret-color: var(--dsh-ui-accent);
+}
+
+[data-message-bubble] {
+  color: var(--dsh-ui-text);
+  background: var(--dsh-ui-message-surface);
+  border-radius: 13px;
+  font-family: var(--dsh-ui-font);
+}
+
+[data-sidebar-scrollport] :is(button, [role="button"], [role="treeitem"]) {
+  font-family: var(--dsh-ui-font);
+}
+
+[data-sidebar-scrollport] :is([role="treeitem"], [data-slot="sidebar.session.action"], [data-slot="sidebar.workspace.row"]) {
+  min-height: 29px;
+  border-radius: 7px;
+}
+
+[data-sidebar-scrollport] :is([aria-current="page"], [aria-selected="true"]) {
+  background: var(--dsh-ui-sidebar-row-selected);
+}
+
+[data-rightbar-col] {
+  border-color: var(--dsh-ui-toolbar-border);
+}
+
+[data-home-whale] {
+  visibility: hidden;
+}
+
+.dsh-ui-icon {
+  display: block;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: inherit;
+}
+
+:is(.dsh-ui-greeting, .dsh-ui-suggestion, .dsh-ui-control, .dsh-ui-model-row, .dsh-ui-retry):focus-visible {
+  outline: 2px solid var(--dsh-ui-focus);
+  outline-offset: 2px;
+}
+
+.dsh-ui-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body, [data-composer-card],
+  :is([class*="_sidebarCol"], [data-rightbar-col], [data-message-bubble], [data-conversation-content] > [data-conversation-scroll]) { transition: none; }
+}

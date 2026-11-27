@@ -1,0 +1,55 @@
+.dsh-ui-theme-setting {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 16px 0;
+  border-bottom: 0.5px solid var(--dsh-ui-border);
+  color: var(--dsh-ui-text);
+  font-size: 14px;
+}
+
+.dsh-ui-theme-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dsh-ui-theme-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 32px;
+  padding: 4px 10px;
+  border: 1px solid var(--dsh-ui-border);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color var(--dsh-ui-motion), border-color var(--dsh-ui-motion), color var(--dsh-ui-motion);
+}
+
+.dsh-ui-theme-option > span {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dsh-ui-theme-option:hover { background: var(--dsh-ui-muted); }
+.dsh-ui-theme-option[aria-pressed="true"] {
+  border-color: var(--dsh-ui-focus);
+  background: var(--dsh-ui-accent-surface);
+  color: var(--dsh-ui-accent-surface-foreground);
+}
+.dsh-ui-theme-option:focus-visible {
+  outline: 2px solid var(--dsh-ui-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dsh-ui-theme-option { transition: none; }
+}

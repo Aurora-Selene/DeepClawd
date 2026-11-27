@@ -1,0 +1,3 @@
+- insert:
+    - id: deepseek-integrated-ui
+      name: '@local/dsh-deepseek-ui'
